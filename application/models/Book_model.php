@@ -19,7 +19,7 @@ class Book_model extends CI_Model
 
         $this->db->from('tbl_books');
 
-        $this->db->where('isbn', $isbn);
+        $this->db->where('ISBN', $isbn);
 
         $query = $this->db->get();
 
@@ -63,9 +63,9 @@ class Book_model extends CI_Model
     public function delete($id)
     {
 
-        $this->db->where('id', $id);
+        // $this->db->where('id', $id);
 
-        if ($this->is_id_avil($id) ? $this->db->delete('tbl_books') : false) {
+        if ($this->is_id_avil($id) ? $this->db->where('id', $id)->delete('tbl_books') : false) {
 
             return true;
 
@@ -119,9 +119,10 @@ class Book_model extends CI_Model
     public function update($id, $data)
     {
         
-        $this->db->where('id', $id);
+        // $this->db->where('id', $id);
 
-        if ( $this->is_id_avil($id) ? $this->db->update('tbl_books', $data) : false) {
+        if ( $this->is_id_avil($id) ? $this->db->where('id', $id)->update('tbl_books', $data) : false) {
+            // echo $this->db->last_query();
 
             return true;
 
